@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PalmHarvestSim - Input Simulasi</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'green-palm': '#4CAF50',
+                        'yellow-palm': '#FFEB3B',
+                    },
+                    fontFamily: {
+                        'poppins': ['Poppins', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="font-poppins bg-gray-50 text-gray-800">
+    <!-- Header/Navbar -->
+    <header class="bg-white shadow-sm sticky top-0 z-10">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <a href="index.html" class="flex items-center">
+                <img src="images/logo.png" alt="PalmHarvestSim Logo" class="h-10 w-auto">
+            </a>
+            <nav class="flex space-x-2 md:space-x-6">
+                <a href="input.html" class="text-green-palm hover:text-green-700 font-medium px-3 py-2 rounded-lg transition duration-300 hover:bg-green-50 bg-green-50">Simulasi</a>
+                <a href="about.html" class="text-green-palm hover:text-green-700 font-medium px-3 py-2 rounded-lg transition duration-300 hover:bg-green-50">Tentang</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Input Form Section -->
+    <section class="py-10 md:py-16">
+        <div class="container mx-auto px-4">
+            <h1 class="text-2xl md:text-3xl font-bold mb-8 text-center text-green-palm">Input Data Simulasi</h1>
+            
+            <div class="flex flex-col lg:flex-row gap-8">
+                <!-- Form Column -->
+                <div class="lg:w-2/3 bg-white p-6 md:p-8 rounded-xl shadow-md">
+                    <form id="simulationForm" action="result.html" method="get" class="space-y-8">
+                        <!-- Umur Tanaman Input -->
+                        <div class="space-y-2">
+                            <label for="plant-age" class="block text-lg font-medium text-gray-700">Umur Tanaman</label>
+                            <div class="flex flex-col md:flex-row gap-4 md:items-center">
+                                <div class="flex-1">
+                                    <select id="plant-age" name="plant-age" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-palm focus:border-green-palm bg-white shadow-sm transition duration-300">
+                                        <option value="" disabled selected>Pilih umur tanaman</option>
+                                        <option value="1">1 tahun</option>
+                                        <option value="2">2 tahun</option>
+                                        <option value="3">3 tahun</option>
+                                        <option value="4">4 tahun</option>
+                                        <option value="5">5 tahun</option>
+                                        <option value="6">6 tahun</option>
+                                        <option value="7">7 tahun</option>
+                                        <option value="8">8 tahun</option>
+                                        <option value="9">9 tahun</option>
+                                        <option value="10+">10+ tahun</option>
+                                    </select>
+                                </div>
+                                <div class="flex-1">
+                                    <label for="planting-date" class="block text-sm text-gray-500 mb-1">Atau masukkan tanggal tanam:</label>
+                                    <input type="date" id="planting-date" name="planting-date" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-palm focus:border-green-palm bg-white shadow-sm transition duration-300">
+                                </div>
+                            </div>
+                            <div id="age-error" class="hidden text-red-500 text-sm mt-1">Mohon pilih umur tanaman atau masukkan tanggal tanam</div>
+                        </div>
+
+                        <!-- Curah Hujan Input -->
+                        <div class="space-y-2">
+                            <label for="rainfall" class="block text-lg font-medium text-gray-700">Curah Hujan (mm)</label>
+                            <div class="flex flex-col md:flex-row items-center gap-4">
+                                <div class="w-full md:w-2/3">
+                                    <input type="range" id="rainfall" name="rainfall" min="0" max="500" value="250" step="10" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-green-palm">
+                                </div>
+                                <div class="w-full md:w-1/3">
+                                    <input type="number" id="rainfall-value" name="rainfall-value" min="0" max="500" value="250" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-palm focus:border-green-palm bg-white shadow-sm transition duration-300">
+                                </div>
+                            </div>
+                            <div id="rainfall-error" class="hidden text-red-500 text-sm mt-1">Nilai curah hujan wajib diisi</div>
+                        </div>
+
+                        <!-- Kelembaban Udara Input -->
+                        <div class="space-y-2">
+                            <label for="humidity" class="block text-lg font-medium text-gray-700">Kelembaban Udara (%)</label>
+                            <div class="flex flex-col md:flex-row items-center gap-4">
+                                <div class="w-full md:w-2/3">
+                                    <input type="range" id="humidity" name="humidity" min="0" max="100" value="65" step="5" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-green-palm">
+                                </div>
+                                <div class="w-full md:w-1/3">
+                                    <input type="number" id="humidity-value" name="humidity-value" min="0" max="100" value="65" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-palm focus:border-green-palm bg-white shadow-sm transition duration-300">
+                                </div>
+                            </div>
+                            <div id="humidity-error" class="hidden text-red-500 text-sm mt-1">Nilai kelembaban udara wajib diisi</div>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <div class="pt-4">
+                            <button type="submit" id="simulate-btn" class="w-full bg-green-palm hover:bg-green-600 text-white font-medium py-3 px-8 rounded-lg shadow-md transition duration-300 transform hover:scale-105 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50">
+                                Simulasikan
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Tips Sidebar -->
+                <div class="lg:w-1/3 bg-gradient-to-br from-green-50 to-yellow-50 p-6 md:p-8 rounded-xl shadow-md">
+                    <h2 class="text-xl font-semibold mb-6 text-green-palm border-b border-green-100 pb-3">Tips & Informasi</h2>
+                    
+                    <div class="space-y-6">
+                        <div class="bg-white p-4 rounded-lg shadow-sm">
+                            <div class="flex items-start mb-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green-palm mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                                <h3 class="font-medium text-gray-800">Umur Tanaman</h3>
+                            </div>
+                            <p class="text-sm text-gray-600">Tanaman kelapa sawit mulai produktif pada usia 3-4 tahun dan mencapai puncak produktivitas pada usia 8-12 tahun. Umur tanaman mempengaruhi kualitas dan kuantitas buah.</p>
+                        </div>
+                        
+                        <div class="bg-white p-4 rounded-lg shadow-sm">
+                            <div class="flex items-start mb-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green-palm mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                                <h3 class="font-medium text-gray-800">Curah Hujan</h3>
+                            </div>
+                            <p class="text-sm text-gray-600">Curah hujan ideal untuk kelapa sawit adalah 2000-3000 mm/tahun atau sekitar 150-250 mm/bulan. Curah hujan yang terlalu tinggi atau rendah dapat mempengaruhi pembentukan bunga dan buah.</p>
+                        </div>
+                        
+                        <div class="bg-white p-4 rounded-lg shadow-sm">
+                            <div class="flex items-start mb-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green-palm mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                                <h3 class="font-medium text-gray-800">Kelembaban Udara</h3>
+                            </div>
+                            <p class="text-sm text-gray-600">Kelembaban optimal untuk tanaman kelapa sawit berkisar antara 50-70%. Kelembaban yang tepat mendukung pertumbuhan tanaman dan pembentukan buah yang baik.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-100 border-t border-gray-200 py-8 mt-10">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <p class="text-sm text-gray-500">&copy; 2023 PalmHarvestSim - Aplikasi Simulasi Panen Kelapa Sawit</p>
+                </div>
+                <div class="flex space-x-6">
+                    <a href="index.html" class="text-gray-500 hover:text-green-palm text-sm">Beranda</a>
+                    <a href="input.html" class="text-gray-500 hover:text-green-palm text-sm">Simulasi</a>
+                    <a href="result.html" class="text-gray-500 hover:text-green-palm text-sm">Hasil</a>
+                    <a href="about.html" class="text-gray-500 hover:text-green-palm text-sm">Tentang</a>
+                </div>
+                <div class="mt-4 md:mt-0">
+                    <a href="mailto:contact@palmharvestsim.id" class="text-green-palm hover:text-green-700 text-sm font-medium">contact@palmharvestsim.id</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Sync range slider with number input for rainfall
+        const rainfallSlider = document.getElementById('rainfall');
+        const rainfallValue = document.getElementById('rainfall-value');
+        
+        rainfallSlider.addEventListener('input', function() {
+            rainfallValue.value = this.value;
+        });
+        
+        rainfallValue.addEventListener('input', function() {
+            rainfallSlider.value = this.value;
+        });
+        
+        // Sync range slider with number input for humidity
+        const humiditySlider = document.getElementById('humidity');
+        const humidityValue = document.getElementById('humidity-value');
+        
+        humiditySlider.addEventListener('input', function() {
+            humidityValue.value = this.value;
+        });
+        
+        humidityValue.addEventListener('input', function() {
+            humiditySlider.value = this.value;
+        });
+        
+        // Form validation
+        const simulationForm = document.getElementById('simulationForm');
+        const plantAge = document.getElementById('plant-age');
+        const plantingDate = document.getElementById('planting-date');
+        const ageError = document.getElementById('age-error');
+        const rainfallError = document.getElementById('rainfall-error');
+        const humidityError = document.getElementById('humidity-error');
+        
+        simulationForm.addEventListener('submit', function(e) {
+            let isValid = true;
+            
+            // Check if either plant age or planting date is filled
+            if (plantAge.value === "" && plantingDate.value === "") {
+                ageError.classList.remove('hidden');
+                isValid = false;
+            } else {
+                ageError.classList.add('hidden');
+            }
+            
+            // Check rainfall
+            if (rainfallValue.value === "") {
+                rainfallError.classList.remove('hidden');
+                isValid = false;
+            } else {
+                rainfallError.classList.add('hidden');
+            }
+            
+            // Check humidity
+            if (humidityValue.value === "") {
+                humidityError.classList.remove('hidden');
+                isValid = false;
+            } else {
+                humidityError.classList.add('hidden');
+            }
+            
+            if (!isValid) {
+                e.preventDefault();
+            }
+        });
+    </script>
+</body>
+</html> 
